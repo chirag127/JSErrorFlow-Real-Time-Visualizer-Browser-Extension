@@ -1,42 +1,37 @@
-# Node.js
+# Apex Standard .gitignore for Browser Extensions (JavaScript/TypeScript)
+
+# Build artifacts
+.vite/
+build/
+dist/
+*.local
+*.env.local
+*.env.development.local
+*.env.production.local
+*.env.test.local
+
+# Node dependencies
 node_modules/
 
-# Production
-.env
-dist/
-build/
-
-# IDE / Editor
-.idea/
-.vscode/
-*.iml
+# Logs
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# System Files
+# IDE/Editor configuration
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
 .DS_Store
+Thumbs.db
 
-# WXT (Web Extension Toolkit)
-.wxt/
-wxt.config.ts
-
-# Tauri
-tauri.conf.json
-target/
-
-# Biome/ESLint Cache
-.biome/
-.eslintcache
-
-# Package Manager Specific
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Local Development
-.temp/
-
-# Playwright
-playwright-report/
-
-# Other
+# Testing artifacts
+.vitest/
 coverage/
+*.test.js.snap
+*.test.ts.snap
