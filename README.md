@@ -1,198 +1,170 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e33cdb4a683/assets/browser-extensions.png" alt="JSErrorFlow Logo" width="600"/>
-</p>
+# JSErrorFlow-RealTime-Visualizer-Browser-Extension
 
-<h1 align="center">JSErrorFlow-RealTime-Visualizer-Browser-Extension</h1>
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension/ci.yml?label=Build&style=flat-square)
+![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension?style=flat-square)
+![Language](https://img.shields.io/github/languages/top/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension?style=flat-square)
+![License](https://img.shields.io/github/license/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension?style=flat-square)
+![GitHub Stars](https://img.shields.io/github/stars/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension?style=flat-square)
 
-<p align="center">
-  <!-- Build Status -->
-  <img src="https://img.shields.io/github/actions/workflow/status/YourOrg/JSErrorFlow-RealTime-Visualizer-Browser-Extension/ci.yml?branch=main&label=Build&style=flat-square" alt="Build Status">
-  <!-- Coverage (Placeholder) -->
-  <img src="https://img.shields.io/badge/Coverage-90%25%2B-brightgreen?style=flat-square" alt="Coverage">
-  <!-- Tech Stack -->
-  <img src="https://img.shields.io/badge/Tech%20Stack-TypeScript%20%7C%20Vite%20%7C%20WXT-blueviolet?style=flat-square" alt="Tech Stack">
-  <!-- Linter -->
-  <img src="https://img.shields.io/badge/Linter-Biome-33D8D8?style=flat-square" alt="Linter">
-  <!-- License -->
-  <img src="https://img.shields.io/badge/License-CC%20BY--NC-green?style=flat-square" alt="License">
-  <!-- Version -->
-  <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=flat-square" alt="Version">
-  <!-- GitHub Stars -->
-  <a href="https://github.com/YourOrg/JSErrorFlow-RealTime-Visualizer-Browser-Extension/stargazers">
-    <img src="https://img.shields.io/github/stars/YourOrg/JSErrorFlow-RealTime-Visualizer-Browser-Extension?style=social" alt="GitHub Stars">
-  </a>
-</p>
+> **JSErrorFlow** provides elite, real-time JavaScript error visualization directly on the DOM, transforming opaque stack traces into actionable, visually pinpointed feedback for rapid frontend debugging.
 
-<p align="center">
-  <b>Star ⭐ this Repo to support our mission in elite frontend debugging!</b>
-</p>
+This extension revolutionizes the debugging cycle by mapping JavaScript exceptions directly onto the affected HTML elements, offering superior context retention over traditional developer consoles.
 
-<p align="center">
-  An elite, real-time browser extension engineered to precisely pinpoint and visually highlight JavaScript errors directly on associated DOM elements. This critical debugging tool dramatically streamlines frontend development workflows, significantly boosts developer productivity, and delivers immediate, intuitive visual feedback within any web environment.
-</p>
+[⭐ Star this Repo](https://github.com/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension)
 
---- 
+---
 
-## 🚀 Project Overview
+## 🚀 Project Overview & Architecture
 
-JSErrorFlow is the ultimate browser extension for real-time JavaScript error visualization. By injecting directly into the web page context, it identifies runtime errors and dynamically overlays visual cues and detailed information onto the exact DOM elements involved, transforming error detection from a tedious console hunt into an intuitive visual experience. This tool is indispensable for accelerating debugging cycles and maintaining high-quality web applications.
+**JSErrorFlow** is engineered using a highly decoupled architecture standard for modern browser extensions, prioritizing performance, non-intrusiveness, and immediate feedback loops.
 
-## 📊 Architecture
+### Core Components
 
-JSErrorFlow employs a robust architecture designed for efficient, real-time error processing and DOM manipulation within the browser extension paradigm. It leverages distinct components for content script injection, background service worker management, and intuitive user interface presentation.
+1.  **Injection Layer (Content Script):** Hooks into the target webpage's DOM and execution context. Responsible for intercepting `window.onerror` or monitoring specific frameworks' error streams.
+2.  **Visualization Engine (Overlay Renderer):** A lightweight overlay system that draws visual indicators (e.g., bounding boxes, error tags) directly onto the elements referenced in the error stack trace.
+3.  **Communication Bridge (Background Service Worker):** Manages persistent state, configuration, and handles secure, high-level communication between the injection layer and the browser UI panel.
 
-```mermaid
-graph TD
-    A[Web Page] -- Intercepts Errors & Manipulates DOM --> B(Content Script)
-    B -- Sends Error Data --> C(Background Service Worker)
-    C -- Stores & Processes Data --> D{Extension Storage / State Management}
-    C -- Notifies --> E(Popup UI)
-    C -- Communicates with --> F(DevTools Panel)
-    F -- Displays Detailed Insights --> D
-    E -- User Configuration --> C
-    subgraph Browser Extension
-        B
-        C
-        D
-        E
-        F
-    end
-```
+### Architectural Diagram (High-Level View)
 
-## 📝 Table of Contents
+ascii
++----------------------------------+
+|      Browser Extension UI/Panel    |
+|  (Configuration & Logging History) |
++------------------+---------------+
+                   |
+        (Async Message Passing)
+                   v
++----------------------------------+
+|  Background Service Worker (Core) |
+|  - State Management               |
+|  - Inter-script Communication     |
++------------------+---------------+
+                   |
+        (DOM Injection/Interception)
+                   v
++----------------------------------+
+|  Content Scripts (Injected Page)   |
+|  - Error Hooking (window.onerror)  |
+|  - DOM Element Mapping & Highlighting |
++----------------------------------+
 
-- [🚀 Project Overview](#🚀-project-overview)
-- [📊 Architecture](#📊-architecture)
-- [📝 Table of Contents](#📝-table-of-contents)
-- [🤖 AI Agent Directives](#🤖-ai-agent-directives)
-- [🛠️ Local Development Setup](#🛠️-local-development-setup)
-- [⚙️ Available Scripts](#⚙️-available-scripts)
-- [🏗️ Core Development Principles](#🏗️-core-development-principles)
-- [🤝 Contributing](#🤝-contributing)
-- [🛡️ Security](#🛡️-security)
-- [📜 License](#📜-license)
 
-## 🤖 AI Agent Directives
+## 🗺️ Table of Contents
 
-<details>
-<summary><b>Expand for AI System Configuration & Architectural Guidance</b></summary>
+1.  [🚀 Project Overview & Architecture](#-project-overview--architecture)
+    *   [Core Components](#core-components)
+    *   [Architectural Diagram (High-Level View)](#architectural-diagram-high-level-view)
+2.  [🗺️ Table of Contents](#-table-of-contents)
+3.  [🛠️ Technology Stack & Compliance](#-technology-stack--compliance)
+4.  [⚙️ Development & Setup](#-development--setup)
+5.  [🤖 AI Agent Directives (SSOT for Future Automation)](#-ai-agent-directives-ssot-for-future-automation)
+6.  [📚 Documentation & Contribution](#-documentation--contribution)
+7.  [⚖️ License](#-license)
 
-### Tech Stack Definition
+---
 
-This project is an advanced browser extension built with the following core technologies, optimized for performance, maintainability, and developer experience:
+## 🛠️ Technology Stack & Compliance
 
-*   **Frontend Framework:** WXT (Web Extensibility Toolkit) for streamlined cross-browser extension development.
-*   **Language:** **TypeScript 6.x** (Strict Mode enforced).
-*   **Bundler/Dev Server:** **Vite 7** (leveraging Rolldown for optimized bundling).
-*   **State Management:** **Signals** (standardized for reactive and performant state handling).
-*   **Styling:** TailwindCSS v4 for utility-first styling.
-*   **Linting & Formatting:** **Biome** (chosen for its exceptional speed and integrated linter/formatter capabilities).
-*   **Unit Testing:** **Vitest** (fast, Vite-native testing framework).
-*   **End-to-End Testing:** **Playwright** (for robust, cross-browser E2E testing of extension functionality).
+As an elite project, **JSErrorFlow** is built for modern browser performance and strict security standards.
 
-### Architectural Patterns
+| Category | Technology | Standard Adherence |
+| :--- | :--- | :--- |
+| **Core Language** | TypeScript 5.x (Strict Mode) | Type Safety, Scalability |
+| **Build Tool** | Vite 5+ (Rollup Backend) | Tree-Shaking, Dev Speed |
+| **Extension Framework** | WXT (Wxt) | Manifest V3 Compliance, Unified API Layer |
+| **Styling** | TailwindCSS 4.x | Utility-First, Maintainability |
+| **Linting/Formatting** | Biome (Linter/Formatter) | Ultra-Fast Static Analysis |
+| **Testing** | Vitest (Unit/Component) & Playwright (E2E) | Robust Verification |
 
-The codebase adheres to the following foundational architectural principles:
+## ⚙️ Development & Setup
 
-*   **Feature-Sliced Design (FSD):** Organized into `app`, `pages`, `widgets`, `features`, `entities`, `shared` layers to ensure strict module boundaries, high cohesion, and low coupling. This promotes scalability and reusability.
-*   **SOLID Principles:** Strict adherence to Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion Principles throughout the codebase.
-*   **DRY (Don't Repeat Yourself):** Emphasis on abstracting common logic and components to minimize redundancy.
-*   **Separation of Concerns:** Clear distinction between UI components, business logic, data fetching, and browser API interactions.
-*   **Command Query Responsibility Segregation (CQRS):** Logic is explicitly divided into commands (mutating state) and queries (reading state) to enhance clarity and maintainability.
-
-### Key Verification Commands for AI Agents
-
-To ensure the integrity and quality of the codebase, AI agents should execute the following commands:
-
-*   **Install Dependencies:** `npm install` or `pnpm install` or `yarn install` (prefer `pnpm` if available).
-*   **Run Development Server:** `npm run dev` (starts the Vite dev server for extension).
-*   **Build Production Bundle:** `npm run build`
-*   **Lint & Format Check:** `npm run lint` or `biome check --apply .` (for strict adherence to style).
-*   **Run Unit Tests:** `npm run test` or `vitest run`
-*   **Run E2E Tests:** `npm run test:e2e` or `playwright test`
-*   **Type Check:** `npm run type-check` or `tsc --noEmit`
-
-**Mandate:** All automated checks (`lint`, `test`, `type-check`) must pass with zero errors before any code commit or integration.
-</details>
-
-## 🛠️ Local Development Setup
-
-To get JSErrorFlow up and running on your local machine, follow these steps:
+This repository adheres to the Apex 'Zero-Defect' principle. Local setup requires Node.js (v20+ recommended).
 
 ### Prerequisites
 
-*   Node.js (LTS version recommended)
-*   npm, yarn, or pnpm (pnpm is recommended for faster installs and better disk space utilization)
+bash
+# 1. Clone the repository
+git clone https://github.com/chirag127/JSErrorFlow-RealTime-Visualizer-Browser-Extension.git
+cd JSErrorFlow-RealTime-Visualizer-Browser-Extension
 
-### Installation
+# 2. Install dependencies using uv (hypothetical alignment for speed/modernity)
+# Note: For Node projects, we use npm/pnpm, but align to the spirit of modern package management.
+pnpm install 
+# OR
+npm install
 
-1.  **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/YourOrg/JSErrorFlow-RealTime-Visualizer-Browser-Extension.git
-    cd JSErrorFlow-RealTime-Visualizer-Browser-Extension
-    ```
+### Execution Scripts
 
-2.  **Install dependencies:**
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| **Development** | `pnpm dev` | Runs Vite in watch mode, rebuilding extension assets on file change. |
+| **Linting** | `pnpm lint` | Executes Biome to check code quality and formatting compliance. |
+| **Testing (Unit)** | `pnpm test:unit` | Runs Vitest suites against isolated components/logic. |
+| **Testing (E2E)** | `pnpm test:e2e` | Executes Playwright against a sample application or staging environment. |
+| **Build** | `pnpm build` | Creates the production-ready, optimized distribution files for packaging. |
 
-    ```bash
-    # Using pnpm (recommended)
-    pnpm install
+### Core Development Principles
 
-    # Or using npm
-    # npm install
+*   **SOLID:** Strict adherence to Single Responsibility Principle in script separation (Content vs. Background).
+*   **DRY:** Avoid redundant error handling logic; abstract error reporting into core utility modules.
+*   **YAGNI:** Do not implement features until the user-facing debugging workflow explicitly demands them.
 
-    # Or using yarn
-    # yarn install
-    ```
+---
 
-3.  **Start the development server:**
+## 🤖 AI Agent Directives (SSOT for Future Automation)
 
-    ```bash
-    pnpm dev
-    ```
+<details>
+<summary><strong>Apex AI Agent Configuration for JSErrorFlow</strong></summary>
 
-    This will build the extension and watch for changes. The output will provide instructions on how to load the unpacked extension in your browser (e.g., Chrome, Firefox).
+### 1. System Identity & Philosophy
 
-4.  **Load the extension in your browser:**
+**Role:** Senior Principal Software Architect, Master Technical Copywriter.
+**Philosophy:** "Zero-Defect, High-Velocity, Future-Proof." Enforce FAANG-level standards.
+**Goal:** Maintain and evolve the extension's performance, debugging accuracy, and Manifest V3 compliance.
 
-    *   **Chrome:** Go to `chrome://extensions/`, enable "Developer mode", click "Load unpacked", and select the `dist` folder generated by `pnpm dev`.
-    *   **Firefox:** Go to `about:debugging#/runtime/this-firefox`, click "Load Temporary Add-on...", and select any file inside the `dist` folder.
+### 2. Technology Stack Definition (Contextual Alignment)
 
-## ⚙️ Available Scripts
+**Primary Language:** TypeScript (Strict Mode).
+**Toolchain Enforcement:**
+*   **Linting/Formatting:** Biome must be the *sole* authority on code style. Enforce a maximum line length of 120 characters.
+*   **Bundling:** Vite/Rollup configuration must prioritize small asset size for the bundled extension files.
+*   **Testing:** All new logic must have accompanying Vitest unit tests (minimum 90% coverage threshold for new feature files) and Playwright E2E validation for successful DOM highlighting.
+*   **Manifest:** Strictly adhere to **Manifest V3 (MV3)** structure. Service Workers must be used correctly, minimizing long-running tasks.
 
-In the project directory, you can run:
+### 3. Verification Commands
 
-| Command            | Description                                                               |
-| :----------------- | :------------------------------------------------------------------------ |
-| `pnpm dev`         | Starts the development server with hot-reloading for the extension.       |
-| `pnpm build`       | Builds the extension for production to the `dist` folder.                 |
-| `pnpm lint`        | Runs Biome linter and formatter to check and fix code style issues.       |
-| `pnpm test`        | Runs unit tests using Vitest.                                             |
-| `pnpm test:e2e`    | Runs end-to-end tests using Playwright.                                   |
-| `pnpm type-check`  | Performs TypeScript type checking across the project.                     |
-| `pnpm format`      | Applies Biome formatting rules to the entire codebase.                    |
-| `pnpm clean`       | Removes build artifacts and temporary files.                              |
+Agents must use these commands for initial environment verification:
 
-## 🏗️ Core Development Principles
+bash
+# Verify environment health and dependency integrity
+# If 'pnpm' is used, this confirms the package manager is functional.
+ls -la node_modules 
 
-Our development philosophy for JSErrorFlow is rooted in modern, robust engineering practices:
+pnpm lint 
 
-*   **SOLID:** Adhering to the Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles ensures a highly maintainable and scalable codebase.
-*   **DRY (Don't Repeat Yourself):** We strive to eliminate redundant code by creating reusable abstractions and utilities.
-*   **KISS (Keep It Simple, Stupid):** Solutions are designed to be as straightforward as possible, avoiding unnecessary complexity.
-*   **YAGNI (You Aren't Gonna Need It):** Features are implemented only when they are genuinely required, preventing over-engineering.
-*   **Test-Driven Development (TDD):** Writing tests before code helps ensure functionality, improves design, and reduces bugs.
-*   **Code Review:** All changes undergo rigorous peer review to maintain quality and share knowledge.
+# Verify build output size
+npm run build && du -sh dist
 
-## 🤝 Contributing
 
-We welcome contributions to JSErrorFlow! Please see our [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines on how to submit issues, features, and pull requests.
+### 4. Architectural Directives
 
-## 🛡️ Security
+1.  **Decoupling:** Ensure Content Scripts cannot directly access Background Service Worker scope. All communication **MUST** flow through `chrome.runtime.sendMessage` or `chrome.runtime.onMessage`.
+2.  **DOM Isolation:** Highlighting mechanisms must utilize Shadow DOM or highly specific CSS selectors to prevent styling leakage into the host page.
+3.  **Error Normalization:** All native `Error` objects intercepted must be immediately serialized into a standardized, internal JSON structure before transmission across script boundaries.
 
-Your security is our priority. Please refer to our [SECURITY.md](.github/SECURITY.md) to learn how to report vulnerabilities and understand our security practices.
+</details>
 
-## 📜 License
+---
 
-This project is licensed under the [Creative Commons Attribution-NonCommercial (CC BY-NC) License](LICENSE).
+## 📚 Documentation & Contribution
+
+We welcome contributions that enhance visualization accuracy, performance, or extension stability. Please review our full contribution guidelines.
+
+*   [CONTRIBUTING.md](./.github/CONTRIBUTING.md)
+*   [SECURITY.md](./.github/SECURITY.md)
+*   [ISSUE_TEMPLATE](./.github/ISSUE_TEMPLATE/bug_report.md)
+
+## ⚖️ License
+
+This project is licensed under the **CC BY-NC 4.0 License**. See the [LICENSE](./LICENSE) file for details.
