@@ -8,156 +8,111 @@
 
 ---
 
-## 2. AI ORCHESTRATION & GEMINI PROTOCOL (LATE 2025)
-**Mandate:** You must use the specific models below. Strictly follow this **Fallback Cascade**. Always try the smartest model first.
-* **Tier 1 (Intelligence):** `gemini-3-pro-preview` (Nov 2025)
-    * *Capability:* Multimodal understanding, Vibe-coding, Complex Reasoning.
-    * *Context:* 1M Input / 65k Output.
-* **Tier 2 (Reasoning/STEM):** `gemini-2.5-pro` (Stable)
-    * *Capability:* Advanced thinking, Codebases, Math.
-    * *Context:* 1M Input / 65k Output.
-* **Tier 3 (Balanced Speed):** `gemini-2.5-flash` (Stable)
-    * *Capability:* Large scale processing, Agentic use cases.
-    * *Context:* 1M Input / 65k Output.
-* **Tier 4 (Ultra-Fast/Cost):** `gemini-2.5-flash-lite-preview-09-2025`
-    * *Capability:* High throughput, Cost-efficiency.
-    * *Context:* 1M Input / 65k Output.
-* **Tier 5 (Legacy/Specialized):**
-    * `gemini-2.0-flash` (Workhorse fallback).
-    * `gemini-2.5-flash-native-audio-preview-09-2025` (Audio I/O).
-* **Circuit Breaker:** If a model returns 429/500, trigger a **Cool-Off Period** and fallback to the next tier immediately.
-* **Settings:** All these models must be selectable in the user configuration.
+## 2. INPUT PROCESSING & COGNITION
+*   **SPEECH-TO-TEXT INTERPRETATION PROTOCOL:**
+    *   **Context:** User inputs may contain phonetic errors (homophones, typos).
+    *   **Semantic Correction:** **STRICTLY FORBIDDEN** from executing literal typos. You must **INFER** technical intent based on the project context.
+    *   **Logic Anchor:** Treat the `README.md` as the **Single Source of Truth (SSOT)**.
+*   **MANDATORY MCP INSTRUMENTATION:**
+    *   **No Guessing:** Do not hallucinate APIs.
+    *   **Research First:** Use `linkup`/`brave` to search for **December 2025 Industry Standards**, **Security Threats**, and **2026 UI Trends**.
+    *   **Validation:** Use `docfork` to verify *every* external API signature.
+    *   **Reasoning:** Engage `clear-thought-two` to architect complex flows *before* writing code.
 
 ---
 
 ## 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
-**Directives:** Detect the project type (`package.json`, `Cargo.toml`, `pyproject.toml`) and apply the corresponding **Apex Toolchain**.
-* **SCENARIO A: WEB / APP / EXTENSION (TypeScript/JavaScript)**
-    * **Stack:** **TypeScript 6.x** (Strict), **Vite 7** (Rolldown), **Tauri v2.x** (Native), **WXT** (Extensions).
-    * **State:** **Signals** (Standardized).
-    * **Lint/Test:** **Biome** (Speed) + **Vitest** (Unit) + **Playwright** (E2E).
-    * **NOTE:** This project is a Browser Extension, aligning with Scenario A.
-* **SCENARIO B: SYSTEMS / PERFORMANCE (Rust/Go)**
-    * **Stack:** **Rust 1.8x** (Cargo) or **Go 1.2x**.
-    * **Lint:** **Clippy** / **GolangCI-Lint**.
-* **SCENARIO C: DATA / SCRIPTS / AI (Python)**
-    * **Stack:** **uv** (Manager), **Ruff** (Linter), **Pytest** (Test).
+**Directives:** Detect the project type and apply the corresponding **Apex Toolchain**. This repository, `JSErrorFlow-Real-Time-Visualizer-Browser-Extension`, is a browser extension.
+
+*   **PRIMARY SCENARIO: WEB / APP / EXTENSION (TypeScript)**
+    *   **Stack:** This project leverages **TypeScript 6.x** with a focus on strictness. It is built with **Vite 7 (Rolldown)** for rapid development and optimal bundling. **Tauri v2.x** is integrated for potential native desktop integration if required, and **WXT (Web Extension Tooling)** is the primary framework for building robust, cross-browser extensions (Chrome, Firefox).
+    *   **State Management:** Employs **Signals (Standardized)** for efficient and declarative state updates across the extension's UI and background processes.
+    *   **Linting & Formatting:** Utilizes **Biome** for ultra-fast, unified linting and formatting, ensuring code quality and consistency.
+    *   **Testing:** Integrates **Vitest** for fast unit and component testing, and **Playwright** for end-to-end testing across browser environments.
+    *   **Architecture:** Adheres to the **Feature-Sliced Design (FSD)** principles to promote modularity, maintainability, and scalability within the extension's codebase.
+
+*   **SECONDARY SCENARIO: SYSTEMS / PERFORMANCE (Rust/Go) - *Not applicable for this project.***
+    *   **Stack:** Rust (Cargo) or Go (Modules).
+    *   **Lint:** Clippy / GolangCI-Lint.
+    *   **Architecture:** Hexagonal Architecture (Ports & Adapters).
+
+*   **TERTIARY SCENARIO: DATA / AI / SCRIPTS (Python) - *Not applicable for this project.***
+    *   **Stack:** uv (Manager), Ruff (Linter), Pytest (Test).
+    *   **Architecture:** Modular Monolith or Microservices.
 
 ---
 
-## 4. RECURSIVE PERFECTION LOOP (THE "ZERO-ERROR" MANDATE)
-**Context:** The user demands absolute perfection. You must not stop until the codebase is pristine.
-**The Loop:**
-1.  **Analyze:** Scan the codebase.
-2.  **Fix:** Apply architectural patterns and fixes.
-3.  **Lint/Format:** Run `biome check --apply` / `ruff check --fix`.
-4.  **Test:** Run `vitest` / `pytest`.
-5.  **DECISION GATE:**
-    * **IF** Errors/Warnings exist -> **GO TO STEP 2** (Self-Correct immediately).
-    * **IF** Clean -> **COMMIT** and Present.
-**Constraint:** **DO NOT STOP** until the build is perfectly clean.
+## 4. DEVELOPMENT & OPERATIONAL STANDARDS (THE "ZERO-DEFECT" MANDATE)
+*   **CODE QUALITY:**
+    *   **Principles:** Adhere strictly to **SOLID**, **DRY**, and **YAGNI** principles.
+    *   **TypeScript:** Enforce `strict: true` in `tsconfig.json`. Use latest ECMAScript features.
+    *   **Error Handling:** Implement robust, hierarchical error handling. Never swallow errors silently.
+*   **DEPENDENCY MANAGEMENT:**
+    *   **`package.json` / `pnpm-lock.yaml` (or similar):** Maintain meticulously. Use `pnpm` or `yarn@berry` for efficient, deterministic installs.
+    *   **Vulnerability Scanning:** Integrate `npm audit` or `pnpm audit` into CI.
+*   **TESTING STRATEGY:**
+    *   **Unit Tests (`vitest`):** Cover all critical business logic and utility functions. Aim for >80% code coverage.
+    *   **Integration Tests:** Verify interactions between different modules.
+    *   **End-to-End Tests (`playwright`):** Simulate user flows within actual browser environments. Execute against production-like builds.
+*   **CI/CD (`.github/workflows/ci.yml`):**
+    *   **Trigger:** On `push` and `pull_request` to `main` and `develop` branches.
+    *   **Pipeline Stages:** Install dependencies -> Lint & Format -> Build -> Unit Test -> E2E Test.
+    *   **Artifacts:** Store build artifacts and test reports.
+    *   **Security:** Integrate SAST (e.g., `semgrep`) and dependency scanning.
+*   **CONFIGURATION MANAGEMENT:**
+    *   **Environment Variables:** Use `.env` files for local development and CI/CD secrets management.
+    *   **Build Configuration:** Vite configuration should optimize for extension requirements (e.g., content script injection, background service workers).
 
 ---
 
-## 5. CORE ARCHITECTURAL PRINCIPLES
-* **SOLID MANDATE:** SRP, OCP, LSP, ISP, DIP.
-* **MODULARITY:** Feature-First Structure (`features/auth`), not type.
-* **CQS:** Methods must be **Commands** (Action) or **Queries** (Data), never both.
-* **12-Factor App:** Config in environment; backing services attached resources.
+## 5. AI AGENT DIRECTIVES FOR `JSErrorFlow-Real-Time-Visualizer-Browser-Extension`
 
----
+<details>
+<summary><b>🤖 EXPAND AGENT DIRECTIVES</b></summary>
 
-## 6. CODE HYGIENE & STANDARDS (READABILITY FIRST)
-* **SEMANTIC NAMING PROTOCOL:**
-    * **Descriptive Verbs:** `calculateWeeklyPay` (Good) vs `calc` (Bad).
-    * **Casing:** `camelCase` (JS/TS), `snake_case` (Python), `PascalCase` (Classes).
-* **CLEAN CODE RULES:**
-    * **Verticality:** Optimize for reading down.
-    * **No Nesting:** Use **Guard Clauses** (`return early`).
-    * **DRY & KISS:** Automate repetitive tasks. Keep logic simple.
-    * **Zero Comments:** Code must be **Self-Documenting**. Use comments *only* for "Why".
+This section outlines the core directives and architectural principles for AI agents interacting with this repository. It is critical for maintaining consistency, quality, and future compatibility.
 
----
+### **1. PRIMARY REPOSITORY CONTEXT**
+*   **Name:** `JSErrorFlow-Real-Time-Visualizer-Browser-Extension`
+*   **Description:** A browser extension that visually highlights JavaScript errors directly on DOM elements in real-time. This developer tool streamlines frontend debugging, boosts productivity, and provides immediate, intuitive visual feedback to accelerate development cycles. Pinpoint and fix errors faster.
+*   **Primary Technology Stack:** TypeScript 6.x, Vite 7, WXT, Tauri v2 (optional), Biome, Vitest, Playwright.
+*   **Architectural Pattern:** Feature-Sliced Design (FSD).
 
-## 7. RELIABILITY, SECURITY & SUSTAINABILITY
-* **DEVSECOPS PROTOCOL:**
-    * **Zero Trust:** Sanitize **ALL** inputs (OWASP Top 10 2025).
-    * **Supply Chain:** Generate **SBOMs** for all builds.
-    * **Fail Fast:** Throw errors immediately on invalid state.
-    * **Encryption:** Secure sensitive data at rest and in transit.
-* **EXCEPTION HANDLING:**
-    * **Resilience:** App must **NEVER** crash. Wrap critical I/O in `try-catch-finally`.
-    * **Recovery:** Implement retry logic with exponential backoff.
-* **GREEN SOFTWARE:**
-    * **Rule of Least Power:** Choose the lightest tool for the job.
-    * **Efficiency:** Optimize loops ($O(n)$ over $O(n^2)$).
-    * **Lazy Loading:** Load resources only when needed.
+### **2. CORE OPERATIONAL PRINCIPLES**
+*   **Apex Protocol Adherence:** All interactions must strictly adhere to the Apex Technical Authority's standards, prioritizing **Zero-Defect, High-Velocity, Future-Proof** development.
+*   **Code Integrity:** Maintain absolute code quality. Enforce strict TypeScript, Biome linting, and comprehensive testing via Vitest and Playwright.
+*   **Documentation:** Keep all documentation (README, AGENTS.md, contributing guides) synchronized with the codebase and current industry best practices.
+*   **Security First:** Proactively identify and mitigate security vulnerabilities. Integrate security scanning tools into CI/CD pipelines.
+*   **Performance Optimization:** Ensure optimal performance for the browser extension, minimizing resource consumption and impact on user browsing experience.
 
----
+### **3. AGENT ACTIONABLE DIRECTIVES**
+*   **Code Generation/Modification:** 
+    *   **Linter & Formatter:** Always run `biome format` and `biome lint` before committing changes.
+    *   **Build Tool:** Utilize `vite` for building the extension. Ensure `wxt` configurations are respected for browser compatibility.
+    *   **Testing:** Execute tests using `vitest` (unit/component) and `playwright` (E2E) as specified in the CI pipeline.
+    *   **TypeScript:** Leverage advanced TypeScript features and strict type checking (`noImplicitAny`, `strictNullChecks`).
+*   **Architecture & Design:**
+    *   **FSD Compliance:** Ensure all new features or modifications align with the FSD structure (e.g., `app`, `processes`, `pages`, `widgets`, `features`, `entities`, `shared`).
+    *   **State Management:** Use Signals for UI state. For background or cross-tab communication, implement robust message passing mechanisms.
+*   **Debugging & Analysis:**
+    *   **Error Visualization:** Focus on enhancing the real-time DOM error highlighting mechanism. Ensure accuracy, performance, and clear visual cues.
+    *   **Content Script Integration:** Safely and efficiently inject content scripts into target pages.
+    *   **Background Service Worker:** Manage extension lifecycle, API calls, and inter-script communication.
+*   **Toolchain Management:**
+    *   **Package Manager:** Use `pnpm` or `yarn@berry` for dependency management.
+    *   **Development Server:** Leverage Vite's dev server (`vite dev`) for rapid iteration.
 
-## 8. COMPREHENSIVE TESTING STRATEGY
-* **FOLDER SEPARATION PROTOCOL:**
-    * **Production Purity:** Source folder is for code ONLY.
-    * **Mirror Structure:** Tests reside exclusively in `tests/`.
-* **TESTING PYRAMID (F.I.R.S.T.):**
-    * **Fast:** Tests run in milliseconds.
-    * **Isolated:** No external dependencies (Mock DB/Network).
-    * **Repeatable:** Deterministic results.
-* **COVERAGE MANDATE:**
-    * **1:1 Mapping:** Every source file **MUST** have a corresponding test file.
-    * **Scenario Coverage:** Test **Success**, **Failure**, and **Edge Cases**.
-    * **Zero-Error Standard:** Software must run with 0 console errors.
+### **4. DEPLOYMENT & ARCHIVAL PROTOCOL**
+*   **Deployment:** Package the extension for Chrome and Firefox using `wxt`'s build commands. Ensure compatibility with latest browser extension APIs.
+*   **Archival:** If a repository is marked for archival, update its metadata (Name, Description, Topics) to reflect its historical significance and professional quality, following the "Retired Product" standard. All documentation must remain pristine.
 
----
+### **5. SAFETY & SECURITY**
+*   **API Usage:** Sanitize all inputs and outputs when interacting with the DOM or browser APIs to prevent XSS and other injection attacks.
+*   **Permissions:** Request the minimum necessary browser permissions.
+*   **Third-Party Libraries:** Regularly audit dependencies for security vulnerabilities using `pnpm audit`.
 
-## 9. UI/UX AESTHETIC SINGULARITY (2026 STANDARD)
-* **VISUAL LANGUAGE:**
-    * **Style:** Blend **Liquid Glass** + **Neo-Brutalist** + **Material You 3.0**.
-    * **Motion:** **MANDATORY** fluid animations (`transition: all 0.2s`).
-* **PERFORMANCE UX:**
-    * **INP Optimization:** Interaction to Next Paint < 200ms.
-    * **Optimistic UI:** UI updates instantly; server syncs in background.
-* **INTERACTION DESIGN:**
-    * **Hyper-Personalization:** Adapt layouts based on user behavior.
-    * **Micro-interactions:** Every click/hover must have feedback.
-* **HYPER-CONFIGURABILITY:**
-    * **Mandate:** Every feature/color must be user-configurable via Settings.
+### **6. COMMUNICATION PROTOCOL**
+*   **Log Verbosity:** Utilize appropriate logging levels (`info`, `warn`, `error`). Avoid excessive `debug` logs in production builds.
+*   **Error Reporting:** Implement a mechanism to report critical errors back to the developer (e.g., via a dedicated logging service or console output in dev mode).
 
----
-
-## 10. DOCUMENTATION & VERSION CONTROL
-* **HERO-TIER README (SOCIAL PROOF):**
-    * **BLUF:** Bottom Line Up Front. Value prop first.
-    * **Live Sync:** Update README **IN THE SAME TURN** as code changes.
-    * **Visuals:** High-Res Badges (Shields.io), ASCII Architecture Trees.
-    * **AI Replication Block:** Include `<details>` with stack info for other agents.
-    * **Social Proof:** Explicitly ask users to **"Star ⭐ this Repo"**.
-* **ADVANCED GIT OPERATIONS:**
-    * **Context Archaeology:** Use `git log`/`git blame`.
-    * **Conventional Commits:** Strict format (`feat:`, `fix:`, `docs:`).
-    * **Semantic Versioning:** Enforce `Major.Minor.Patch`.
-
----
-
-## 11. AUTOMATION SINGULARITY (GITHUB ACTIONS)
-* **Mandate:** Automate CI/CD immediately.
-* **Workflows:**
-    1.  **Integrity:** Lint + Test on Push.
-    2.  **Security:** Audit dependencies + SBOM.
-    3.  **Release:** Semantic Versioning + Artifact Upload.
-    4.  **Deps:** Auto-merge non-breaking updates.
-
----
-
-## 12. THE ATOMIC EXECUTION CYCLE
-**You must follow this loop for EVERY logical step:**
-1.  **Audit:** Scan state (`ls -R`) & History (`git log`).
-2.  **Research:** Query Best Practices & Trends.
-3.  **Plan:** Architect via `clear-thought-two`.
-4.  **Act:** Fix Code + Polish + Add Settings + Write Tests.
-5.  **Automate:** Create/Update CI/CD YAMLs.
-6.  **Docs:** Update `README.md` (Replication Ready).
-7.  **Verify:** Run Tests & Linters.
-8.  **REITERATE:** If *any* error/warning exists, fix it immediately.
-    **DO NOT STOP** until the build is perfectly clean.
-9.  **Commit:** `git commit` immediately (Only when clean).
+</details>
