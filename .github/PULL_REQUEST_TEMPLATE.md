@@ -1,85 +1,75 @@
-# Pull Request Template
+# Pull Request Checklist & Review Directive
 
-**Thank you for contributing to JSErrorFlow!**
+<!--
 
-This template helps ensure your Pull Request (PR) is clear, concise, and meets our high-quality standards. Please fill out all sections accurately.
+Thank you for contributing to JSErrorFlow! 
 
---- 
+Before submitting, please ensure this PR adheres to the Apex Technical Authority standards.
 
-## 1. PR Checklist
+1. **Branch Naming:** Is your branch descriptive (e.g., `feature/new-dom-highlight` or `fix/error-parsing-bug`)?
+2. **Self-Review:** Have you reviewed your own changes against the architectural guidelines in AGENTS.md?
+3. **Testing:** Have you added/updated necessary unit/E2E tests?
+4. **Description:** Is the description clear, concise, and does it reference any related issues (e.g., `Closes #123`)?
 
-Before submitting, please verify that you have:
+-->
 
-* [ ] **Self-Implemented Apex Principles:** Your changes adhere to SOLID, DRY, KISS, CQS, and Zero Trust principles.
-* [ ] **Zero-Error Code:** All code passes linting (`biome check --apply`) and testing (`vitest`) without errors or warnings.
-* [ ] **Comprehensive Tests:** New functionality is covered by unit and/or E2E tests in the `tests/` directory.
-* [ ] **Documentation Sync:** `README.md` (especially the AI Agent Directives block) and other relevant documentation are updated to reflect changes.
-* [ ] **Conventional Commits:** Your commit messages follow the Conventional Commits specification (e.g., `feat:`, `fix:`, `docs:`).
-* [ ] **Security Scrutiny:** All inputs are sanitized, and no new security vulnerabilities have been introduced (refer to OWASP Top 10 2025).
-* [ ] **Performance Focus:** Changes aim to improve or maintain performance (e.g., INP optimization, lazy loading).
-* [ ] **Branch Strategy:** Your changes are based on the latest `main` branch and have been rebased accordingly.
+## 🚀 Feature / Fix Summary
 
---- 
+**Briefly describe the change this PR introduces.** (Why was this change necessary?)
 
-## 2. Pull Request Description
+<!-- Example: Implements real-time error visualization for unhandled promise rejections by hooking into the global `unhandledrejection` event. -->
 
-### 2.1. Title
 
-*Use Conventional Commits format:* `type(scope): short description`
+[Describe the core change here]
 
-*Example:* `fix(core): Resolve issue with error highlighting on dynamic content`
 
-### 2.2. Bottom Line Up Front (BLUF)
+## Related Issues
 
-*Provide a concise 1-2 sentence summary of the problem this PR solves and its impact.*
+Closes/Fixes/Relates to: (e.g., `Closes #42`, `Fixes #10`)
 
---- 
+---
 
-### 2.3. Motivation & Context
+## ✅ Checklist
 
-*Why is this change needed? What problem does it solve?*
-*Are there any related issues? Please link them using `#issue-number`.*
+**Developer Confirmation (Check all that apply):**
 
---- 
+- [ ] **Code Quality:** Linting passes without warnings (`npm run lint`).
+- [ ] **Formatting:** Code formatting is consistent (`npm run format`).
+- [ ] **Testing:** Unit tests (`npm run test:unit`) pass successfully for the added scope.
+- [ ] **Documentation:** Any new public APIs or significant behavioral changes are documented in the relevant source files or README.
+- [ ] **Architecture Alignment:** Changes adhere to the established FSD/WXT patterns outlined in `AGENTS.md`.
+- [ ] **Security:** No secrets exposed, and input sanitization has been applied where necessary (especially DOM manipulation).
 
-### 2.4. Proposed Solution
+---
 
-*Describe the approach taken to solve the problem.*
-*Explain any significant architectural decisions or trade-offs made.*
+## 🧠 Architecture & Technical Deep Dive
 
---- 
+**For non-trivial changes, detail the architectural impact or implementation decisions.**
 
-### 2.5. Changes Made
+1. **Component Impact:** Which main FSD layers were affected (e.g., `entities/error-model`, `features/visualizer-display`)?
+2. **DOM/Runtime Strategy:** How does this interact with the browser's event loop or MutationObserver (if applicable)?
+3. **Performance Considerations:** Are there any new DOM thrashing or excessive re-renders introduced? (Targeting sub-10ms updates).
 
-*List the key files or modules affected.*
-*Highlight any new features, bug fixes, or refactorings.*
+markdown
+[Technical notes here]
 
---- 
 
-### 2.6. Verification Steps
+---
 
-*How can the reviewer verify these changes?*
-*Provide specific steps, including any necessary setup or commands.*
+## 🖼️ Screenshots / Artifacts (If Applicable)
 
---- 
+<!-- If this PR affects the UI or observable behavior, include visual proof. -->
 
-### 2.7. Screenshots/Recordings (If Applicable)
+| Before | After |
+| :---: | :---: | 
+| (Optional Screenshot/GIF) | (Optional Screenshot/GIF) |
 
-*For UI changes, please include before/after screenshots or a GIF/video.*
+---
 
---- 
+## 🤖 Reviewer Guidance
 
-### 2.8. Related AI Agent Directives (If Applicable)
+**Please focus review efforts on the following areas:**
 
-*If this PR introduces changes that affect the "AI Agent Directives" section in the README, please mention them here and provide a brief explanation.*
-
---- 
-
-## 3. Reviewer Notes
-
-*Any specific areas you'd like the reviewer to focus on?*
-*Potential risks or concerns?*
-
---- 
-
-**Please remember to Star ⭐ this repository if you find it valuable!**
+1.  Performance implications of the new visualizer logic.
+2.  Correctness of TypeScript type definitions introduced.
+3.  Adherence to WXT extension lifecycle management.
