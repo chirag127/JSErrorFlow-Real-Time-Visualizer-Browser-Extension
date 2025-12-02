@@ -1,0 +1,56 @@
+name: CI
+
+# Controls when the workflow will run
+# For now, it runs on push for the default branch and on pull_request to the default branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job builds and tests the code on a single runner
+  build_and_test:
+    # The type and version of runner to use
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository into the current runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a recent LTS version
+          cache: 'npm' # Cache npm dependencies
+
+      # Install dependencies and build the extension
+      - name: Install Dependencies and Build
+        run: |
+          npm ci # Use 'ci' for deterministic installs in CI
+          npm run build
+
+      # Run linters and formatters
+      - name: Lint and Format Check
+        run: npm run lint
+
+      # Run unit tests
+      - name: Run Unit Tests
+        run: npm test
+
+      # Optional: Upload build artifacts (e.g., for publishing)
+      # - name: Upload Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: jSErrorFlow-build
+      #     path: dist/ # Adjust path based on your build output directory
+
+      # Upload coverage reports if configured (e.g., with Codecov)
+      # - name: Upload Coverage to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }} # Ensure CODECOV_TOKEN is set in repository secrets
